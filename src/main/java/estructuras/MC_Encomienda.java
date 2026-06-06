@@ -1,0 +1,42 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package estructuras;
+import modelos.Encomienda;
+/**
+ *
+ * @author alboncho
+ */
+public class MC_Encomienda {
+   private int n = 100;
+   private ColaEncomienda[] A = new ColaEncomienda[100];
+   
+   public MC_Encomienda(int n) {
+      this.n = n;
+      for (int i=0; i<n; i++) {
+         A[i] = new ColaEncomienda();
+      }
+   }
+   
+   public int nroElem(int i) {
+      return A[i].nroElem();
+   }
+   
+   public boolean esVacia(int i) { return A[i].esVacia(); }
+   
+   public boolean esLlena(int i) { return A[i].esLlena(); }
+   
+   public void adicionar(int i, Encomienda e) { A[i].adi(e); }
+   
+   public Encomienda eliminar(int i) { return A[i].eli(); }
+   
+   public void vaciar(int i, ColaEncomienda z) { A[i].vaciar(z); }
+   
+   public void vaciar(int i, int j) { A[i].vaciar(A[j]); }
+   
+   public int getN() { return this.n; }
+   
+   public void setN(int n) { this.n = n; }
+   
+}
