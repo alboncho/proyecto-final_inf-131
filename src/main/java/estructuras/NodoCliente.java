@@ -12,6 +12,8 @@ import java.io.Serializable;
  * @author alboncho
  */
 public class NodoCliente implements Serializable {
+   private static final long serialVersionUID = 1L;
+   
    private Cliente dato;
    private NodoCliente sig;
    private NodoCliente ant;

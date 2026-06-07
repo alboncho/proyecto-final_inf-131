@@ -12,6 +12,8 @@ import java.io.Serializable;
  * @author alboncho
  */
 public class PilaEntrega extends VectorEntrega implements Serializable {
+   private static final long serialVersionUID = 1L;
+   
    private int tope;
    
    public PilaEntrega() {

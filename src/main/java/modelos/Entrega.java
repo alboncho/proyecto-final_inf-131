@@ -10,6 +10,8 @@ import java.io.Serializable;
  * @author alboncho
  */
 public class Entrega implements Serializable {
+   private static final long serialVersionUID = 1L;
+   
    private int codEntrega;
    private String fechaEntrega;
    private String encargado;

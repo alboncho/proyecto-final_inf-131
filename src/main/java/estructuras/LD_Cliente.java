@@ -11,6 +11,8 @@ import java.io.Serializable;
  * @author alboncho
  */
 public class LD_Cliente implements Serializable {   
+   private static final long serialVersionUID = 1L;
+   
    private NodoCliente P;
    
    public LD_Cliente() {

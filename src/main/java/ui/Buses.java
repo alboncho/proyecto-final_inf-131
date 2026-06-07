@@ -403,6 +403,9 @@ public class Buses extends javax.swing.JFrame {
       
       // RECUPERAR LISTA BUS DEL ARCHIVO Y AGREGAR BUS 
       LD_Bus ldb = PersistenciaBus.cargar();
+      
+      if (ldb == null) { ldb = new LD_Bus(); }
+      
       ldb.adiFinal(bus);
       
       this.actualizarTabla(ldb);
@@ -419,7 +422,7 @@ public class Buses extends javax.swing.JFrame {
       
       NodoBus R = ldb.getP();
       
-      while (R.getSig() != null) {
+      while (R != null) {
          modelo.addRow(new Object[] {
             R.getDato().getPlaca(),
             R.getDato().getDestino(),
@@ -435,6 +438,10 @@ public class Buses extends javax.swing.JFrame {
    
    private void mostrarTabla() {
       LD_Bus ldb = PersistenciaBus.cargar();
+      
+      if (ldb == null)
+         return;
+      
       this.actualizarTabla(ldb);
    }
    

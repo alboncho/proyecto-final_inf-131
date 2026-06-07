@@ -10,6 +10,8 @@ import java.io.Serializable;
  * @author alboncho
  */
 public class Bus implements Serializable {
+   private static final long serialVersionUID = 1L;
+   
    private String placa;
    private String empresa;
    private String destino;

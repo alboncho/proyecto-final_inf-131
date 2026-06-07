@@ -5,6 +5,11 @@
 package ui;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import modelos.Cliente;
+import modelos.Encomienda;
+import persistencia.PersistenciaEncomienda;
 
 /**
  *
@@ -40,13 +45,13 @@ public class BuscarCliente extends javax.swing.JFrame {
       btn_buscar_cliente = new javax.swing.JButton();
       jPanel3 = new javax.swing.JPanel();
       ta_remitente = new javax.swing.JTextArea();
-      ta_bus = new javax.swing.JTextArea();
+      ta_encomienda = new javax.swing.JTextArea();
       ta_destinatario = new javax.swing.JTextArea();
       jPanel4 = new javax.swing.JPanel();
       jPanel5 = new javax.swing.JPanel();
       jPanel6 = new javax.swing.JPanel();
       jPanel7 = new javax.swing.JPanel();
-      ta_bus1 = new javax.swing.JTextArea();
+      ta_bus = new javax.swing.JTextArea();
       jMenuBar1 = new javax.swing.JMenuBar();
       mn_inicio = new javax.swing.JMenu();
       menu_inicio = new javax.swing.JMenuItem();
@@ -122,12 +127,12 @@ public class BuscarCliente extends javax.swing.JFrame {
       ta_remitente.setRows(5);
       ta_remitente.setText("Remitente:\n\nNombre: Juan Perez\nc.i.: 1234234\nCelular: 645345");
 
-      ta_bus.setBackground(new java.awt.Color(255, 255, 255));
-      ta_bus.setColumns(20);
-      ta_bus.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
-      ta_bus.setForeground(new java.awt.Color(51, 51, 51));
-      ta_bus.setRows(5);
-      ta_bus.setText("Encomienda:\n\nCodigo: 234-3\nDestino: Cochabamba\nPeso: 24kg\nEstado: entregado\nFecha: 24/2_2026\nDescipcion: \"\"\n");
+      ta_encomienda.setBackground(new java.awt.Color(255, 255, 255));
+      ta_encomienda.setColumns(20);
+      ta_encomienda.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+      ta_encomienda.setForeground(new java.awt.Color(51, 51, 51));
+      ta_encomienda.setRows(5);
+      ta_encomienda.setText("Encomienda:\n\nCodigo: 234-3\nDestino: Cochabamba\nPeso: 24kg\nEstado: entregado\nFecha: 24/2_2026\nDescipcion: \"\"\n");
 
       ta_destinatario.setBackground(new java.awt.Color(255, 255, 255));
       ta_destinatario.setColumns(20);
@@ -188,12 +193,12 @@ public class BuscarCliente extends javax.swing.JFrame {
          .addGap(0, 75, Short.MAX_VALUE)
       );
 
-      ta_bus1.setBackground(new java.awt.Color(255, 255, 255));
-      ta_bus1.setColumns(20);
-      ta_bus1.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
-      ta_bus1.setForeground(new java.awt.Color(51, 51, 51));
-      ta_bus1.setRows(5);
-      ta_bus1.setText("Bus asignado:\n\nPlaca: 343-43\nHora de salida: 13:34\nCapacidad: 34kg");
+      ta_bus.setBackground(new java.awt.Color(255, 255, 255));
+      ta_bus.setColumns(20);
+      ta_bus.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+      ta_bus.setForeground(new java.awt.Color(51, 51, 51));
+      ta_bus.setRows(5);
+      ta_bus.setText("Bus asignado:\n\nPlaca: 343-43\nHora de salida: 13:34\nCapacidad: 34kg");
 
       javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
       jPanel3.setLayout(jPanel3Layout);
@@ -203,10 +208,6 @@ public class BuscarCliente extends javax.swing.JFrame {
             .addGap(31, 31, 31)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addGroup(jPanel3Layout.createSequentialGroup()
-                  .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(ta_bus1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGroup(jPanel3Layout.createSequentialGroup()
                   .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                      .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,13 +215,16 @@ public class BuscarCliente extends javax.swing.JFrame {
                         .addComponent(ta_remitente, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(108, 108, 108)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ta_destinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(ta_bus, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                  .addComponent(ta_encomienda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                  .addComponent(ta_destinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                     .addComponent(ta_bus, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addContainerGap(75, Short.MAX_VALUE))
       );
       jPanel3Layout.setVerticalGroup(
          jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,9 +242,9 @@ public class BuscarCliente extends javax.swing.JFrame {
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                      .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(ta_bus1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                     .addComponent(ta_bus, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                  .addComponent(ta_bus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, Short.MAX_VALUE)
+                  .addComponent(ta_encomienda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, Short.MAX_VALUE)
                   .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGap(0, 36, Short.MAX_VALUE))
       );
@@ -395,16 +399,30 @@ public class BuscarCliente extends javax.swing.JFrame {
    }//GEN-LAST:event_tf_ci_clienteActionPerformed
 
    private void btn_buscar_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscar_clienteActionPerformed
-      int ci = Integer.parseInt(tf_ci_cliente.getText());
+      String ci = tf_ci_cliente.getText();
       
-      // METODO BUSCAR CLIENTE 
-      // ...
+      // BUSCAR CLIENTE 
+      ArrayList<Encomienda> le = PersistenciaEncomienda.cargar();
+      Encomienda e = null;
       
-      String nombre = "encontrado";
-      String celular = "encontrado";
-      String encomienda = "encontrado";
+      if (le == null) 
+         return;
       
-      ta_remitente.setText("Remitente:\n\nNombre: " + nombre + "\nCelular: " + celular + "\nC.I.: " + ci);
+      for (Encomienda encomienda : le) {
+         if ( encomienda.getRemitente().getCi().equals(tf_ci_cliente) ||
+              encomienda.getDestinatario().getCi().equals(tf_ci_cliente.getText())) {
+            e = encomienda;
+         }
+      }
+      
+      if (e == null) { 
+         JOptionPane.showMessageDialog(null, "No se encontro cliente con el CI " + tf_ci_cliente.getText());
+         return;
+      }
+      
+      ta_remitente.setText("Remitente " + "\n\nNombre:" + e.getRemitente().getNombre() + "\nC.I.: " + e.getRemitente().getCi() + "\nCelular: " + e.getRemitente().getCelular());
+      ta_destinatario.setText("Destinatario: " + "\n\nNombre:" + e.getDestinatario().getNombre() + "\nC.I.: " + e.getDestinatario().getCi() + "\nCelular: " + e.getDestinatario().getCelular());
+      ta_encomienda.setText("Encomienda: " + "\n\nCodigo:" + e.getCodigo() + "\nDestino: " + e.getDestino() + "\nPeso: " + e.getPeso() + "\nEstado: " + e.getEstado() + "\nFecha registro: " + e.getFechaRegistro() + "\nDescripcion: " + e.getDescripcion());
    }//GEN-LAST:event_btn_buscar_clienteActionPerformed
 
    private void menu_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_inicioActionPerformed
@@ -491,8 +509,8 @@ public class BuscarCliente extends javax.swing.JFrame {
    private javax.swing.JMenu mn_inicio;
    private javax.swing.JMenu mn_ver_buses;
    private javax.swing.JTextArea ta_bus;
-   private javax.swing.JTextArea ta_bus1;
    private javax.swing.JTextArea ta_destinatario;
+   private javax.swing.JTextArea ta_encomienda;
    private javax.swing.JTextArea ta_remitente;
    private javax.swing.JTextField tf_ci_cliente;
    // End of variables declaration//GEN-END:variables

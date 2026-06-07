@@ -11,6 +11,8 @@ import java.io.Serializable;
  * @author alboncho
  */
 public class NodoBus implements Serializable {
+   private static final long serialVersionUID = 1L;
+   
    private Bus dato;
    private NodoBus ant;
    private NodoBus sig;

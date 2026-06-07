@@ -4,6 +4,11 @@
  */
 package ui;
 
+import estructuras.MC_Encomienda;
+import java.util.Arrays;
+import javax.swing.table.DefaultTableModel;
+import persistencia.*;
+
 /**
  *
  * @author alboncho
@@ -18,6 +23,8 @@ public class Destinos extends javax.swing.JFrame {
    public Destinos() {
       initComponents();
       jMenuBar1.setOpaque(true);
+      
+      this.mostrarTabla();
    }
 
    /**
@@ -30,6 +37,14 @@ public class Destinos extends javax.swing.JFrame {
    private void initComponents() {
 
       jPanel1 = new javax.swing.JPanel();
+      jLabel1 = new javax.swing.JLabel();
+      jPanel2 = new javax.swing.JPanel();
+      jLabel2 = new javax.swing.JLabel();
+      jLabel3 = new javax.swing.JLabel();
+      tf_destino = new javax.swing.JTextField();
+      btn_agregar_destino = new javax.swing.JButton();
+      jScrollPane1 = new javax.swing.JScrollPane();
+      tabla_destinos = new javax.swing.JTable();
       jMenuBar1 = new javax.swing.JMenuBar();
       mn_inicio = new javax.swing.JMenu();
       menu_inicio = new javax.swing.JMenuItem();
@@ -47,15 +62,90 @@ public class Destinos extends javax.swing.JFrame {
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+      jLabel1.setFont(new java.awt.Font("Cantarell", 1, 14)); // NOI18N
+      jLabel1.setText("Destinos disponibles");
+
+      jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+
+      jLabel2.setFont(new java.awt.Font("Cantarell", 1, 11)); // NOI18N
+      jLabel2.setForeground(new java.awt.Color(255, 51, 51));
+      jLabel2.setText("Agregar destino");
+
+      jLabel3.setText("Destino:");
+
+      btn_agregar_destino.setBackground(new java.awt.Color(128, 255, 128));
+      btn_agregar_destino.setForeground(new java.awt.Color(51, 51, 51));
+      btn_agregar_destino.setText("Agregar");
+      btn_agregar_destino.addActionListener(this::btn_agregar_destinoActionPerformed);
+
+      javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+      jPanel2.setLayout(jPanel2Layout);
+      jPanel2Layout.setHorizontalGroup(
+         jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(jPanel2Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGroup(jPanel2Layout.createSequentialGroup()
+                  .addComponent(jLabel3)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(tf_destino, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(btn_agregar_destino))
+               .addComponent(jLabel2))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+      );
+      jPanel2Layout.setVerticalGroup(
+         jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(jPanel2Layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel2)
+            .addGap(18, 18, 18)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(jLabel3)
+               .addComponent(tf_destino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(btn_agregar_destino))
+            .addContainerGap(22, Short.MAX_VALUE))
+      );
+
+      tabla_destinos.setModel(new javax.swing.table.DefaultTableModel(
+         new Object [][] {
+            {null},
+            {null},
+            {null},
+            {null}
+         },
+         new String [] {
+            "Destino"
+         }
+      ));
+      jScrollPane1.setViewportView(tabla_destinos);
+
       javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
       jPanel1.setLayout(jPanel1Layout);
       jPanel1Layout.setHorizontalGroup(
          jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGap(0, 440, Short.MAX_VALUE)
+         .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(18, 18, 18)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addComponent(jLabel1)
+                  .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+               .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                  .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(16, 16, 16))))
       );
       jPanel1Layout.setVerticalGroup(
          jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGap(0, 261, Short.MAX_VALUE)
+         .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(18, 18, 18)
+            .addComponent(jLabel1)
+            .addGap(30, 30, 30)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap(17, Short.MAX_VALUE))
       );
 
       jMenuBar1.setBackground(new java.awt.Color(110, 97, 179));
@@ -226,6 +316,51 @@ public class Destinos extends javax.swing.JFrame {
       this.dispose();
    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+   private void btn_agregar_destinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregar_destinoActionPerformed
+      MC_Encomienda mce = PersistenciaColaEncomienda.cargar();
+      
+      if (mce == null) {
+         return;
+      }
+      
+      String[] destinos = mce.getDestinos();
+      String[] nuevos_destinos = Arrays.copyOf(destinos, destinos.length + 1);
+      nuevos_destinos[nuevos_destinos.length - 1] = tf_destino.getText();
+      
+      MC_Encomienda nuevaMC = new MC_Encomienda(nuevos_destinos);
+      
+      // VACIAR COLAS A LA NUEVA MULTICOLA
+      for (int i=0; i<mce.getN(); i++) {  
+         while (!mce.getA()[i].esVacia()) {
+            nuevaMC.adicionar(i, mce.getA()[i].eli());
+         }
+      }
+      
+      // ACTUALIZAMOS EL ARCHIVO
+      PersistenciaColaEncomienda.guardar(nuevaMC);
+      
+      this.mostrarTabla();
+   }//GEN-LAST:event_btn_agregar_destinoActionPerformed
+
+   public void mostrarTabla() {
+      MC_Encomienda mce = PersistenciaColaEncomienda.cargar();
+      
+      if (mce == null) {
+         return;
+      }
+      
+      DefaultTableModel modelo = (DefaultTableModel) tabla_destinos.getModel();
+      modelo.setRowCount(0);
+      
+      String[] destinos = mce.getDestinos();
+      
+      for (String des : destinos) {
+         modelo.addRow(new Object[] {
+            des
+         });
+      }
+   }
+   
    /**
     * @param args the command line arguments
     */
@@ -252,12 +387,18 @@ public class Destinos extends javax.swing.JFrame {
    }
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
+   private javax.swing.JButton btn_agregar_destino;
+   private javax.swing.JLabel jLabel1;
+   private javax.swing.JLabel jLabel2;
+   private javax.swing.JLabel jLabel3;
    private javax.swing.JMenu jMenu1;
    private javax.swing.JMenuBar jMenuBar1;
    private javax.swing.JMenuItem jMenuItem1;
    private javax.swing.JMenuItem jMenuItem2;
    private javax.swing.JMenuItem jMenuItem3;
    private javax.swing.JPanel jPanel1;
+   private javax.swing.JPanel jPanel2;
+   private javax.swing.JScrollPane jScrollPane1;
    private javax.swing.JMenuItem menu_despachar;
    private javax.swing.JMenu menu_destinos;
    private javax.swing.JMenu menu_destinos1;
@@ -267,5 +408,7 @@ public class Destinos extends javax.swing.JFrame {
    private javax.swing.JMenu mn_buscar_cliente;
    private javax.swing.JMenu mn_inicio;
    private javax.swing.JMenu mn_ver_buses;
+   private javax.swing.JTable tabla_destinos;
+   private javax.swing.JTextField tf_destino;
    // End of variables declaration//GEN-END:variables
 }

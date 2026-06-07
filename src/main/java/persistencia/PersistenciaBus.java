@@ -44,6 +44,6 @@ public class PersistenciaBus {
          System.err.println(e.getMessage());
       }
       
-      return new LD_Bus();
+      return null;
    }
 }

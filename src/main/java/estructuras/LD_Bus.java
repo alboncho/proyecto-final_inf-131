@@ -12,6 +12,8 @@ import java.io.Serializable;
  * @author alboncho
  */
 public class LD_Bus implements Serializable {
+   private static final long serialVersionUID = 1L;
+   
    private NodoBus P;
    
    public LD_Bus() {

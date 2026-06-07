@@ -522,9 +522,9 @@ public class Inicio extends javax.swing.JFrame {
       Cliente remitente = new Cliente(nombre_r, celular_r, ci_r);
       
       // CLIENTE DESTINATARIO
-      String nombre_d = tf_nombre_remitente.getText();
-      String celular_d = tf_celular_remitente.getText();
-      String ci_d = tf_ci_remitente.getText();
+      String nombre_d = tf_nombre_destinatario.getText();
+      String celular_d = tf_celular_destinatario.getText();
+      String ci_d = tf_ci_destinatario.getText();
       
       Cliente destinatario = new Cliente(nombre_d, celular_d, ci_d);
       
@@ -562,9 +562,9 @@ public class Inicio extends javax.swing.JFrame {
       tf_celular_remitente.setText("");
       tf_ci_remitente.setText("");
       
-      tf_nombre_remitente.setText("");
-      tf_celular_remitente.setText("");
-      tf_ci_remitente.setText("");
+      tf_nombre_destinatario.setText("");
+      tf_nombre_destinatario.setText("");
+      tf_nombre_destinatario.setText("");
 
       tf_codigo.setText("");
       tf_descripcion.setText("");

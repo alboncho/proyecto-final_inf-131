@@ -10,6 +10,8 @@ import java.io.Serializable;
  * @author alboncho
  */
 public class MC_Encomienda implements Serializable {
+   private static final long serialVersionUID = 1L;
+   
    private int n;
    private ColaEncomienda[] A;
    private String[] destinos;
@@ -22,6 +24,14 @@ public class MC_Encomienda implements Serializable {
          A[i] = new ColaEncomienda();
       }
       
+      this.destinos = destinos;
+   }
+
+   public String[] getDestinos() {
+      return destinos;
+   }
+
+   public void setDestinos(String[] destinos) {
       this.destinos = destinos;
    }
    
