@@ -3,13 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package estructuras;
+
 import modelos.Entrega;
+import java.io.Serializable;
 
 /**
  *
  * @author alboncho
  */
-public class PilaEntrega extends VectorEntrega {
+public class PilaEntrega extends VectorEntrega implements Serializable {
    private int tope;
    
    public PilaEntrega() {

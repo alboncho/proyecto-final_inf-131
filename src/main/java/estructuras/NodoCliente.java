@@ -3,13 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package estructuras;
+
 import modelos.Cliente;
+import java.io.Serializable;
 
 /**
  *
  * @author alboncho
  */
-public class NodoCliente {
+public class NodoCliente implements Serializable {
    private Cliente dato;
    private NodoCliente sig;
    private NodoCliente ant;

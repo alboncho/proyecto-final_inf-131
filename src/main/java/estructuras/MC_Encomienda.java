@@ -4,11 +4,12 @@
  */
 package estructuras;
 import modelos.Encomienda;
+import java.io.Serializable;
 /**
  *
  * @author alboncho
  */
-public class MC_Encomienda {
+public class MC_Encomienda implements Serializable {
    private int n;
    private ColaEncomienda[] A;
    private String[] destinos;
@@ -38,7 +39,7 @@ public class MC_Encomienda {
    
    public void vaciar(int i, int j) { A[i].vaciar(A[j]); }
    
-   public int getN() { return this.n; }
+   public int getN() { return    this.n; }
    
    public void setN(int n) { this.n = n; }
    

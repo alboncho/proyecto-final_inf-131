@@ -3,14 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package estructuras;
-import modelos.Entrega;
 
+import modelos.Entrega;
+import java.io.Serializable;
 
 /**
  *
  * @author alboncho
  */
-public class VectorEntrega {  
+public class VectorEntrega implements Serializable {  
    protected int max = 50;
    protected Entrega[] v = new Entrega[max];
 }

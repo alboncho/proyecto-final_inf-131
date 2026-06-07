@@ -3,13 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package estructuras;
+
 import modelos.Encomienda;
+import java.io.Serializable;
 
 /**
  *
  * @author alboncho
  */
-public class ColaEncomienda extends VectorEncomienda {
+public class ColaEncomienda extends VectorEncomienda implements Serializable {
    private int fr, fi;
    
    public ColaEncomienda() {

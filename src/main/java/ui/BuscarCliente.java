@@ -20,7 +20,7 @@ public class BuscarCliente extends javax.swing.JFrame {
    public BuscarCliente() {
       initComponents();
       jMenuBar1.setOpaque(true);
-      //jMenuBar1.setBackground(new Color(110, 97, 179));
+      jMenuBar1.setOpaque(true);
    }
 
    /**
@@ -50,11 +50,15 @@ public class BuscarCliente extends javax.swing.JFrame {
       ta_bus1 = new javax.swing.JTextArea();
       jMenuBar1 = new javax.swing.JMenuBar();
       mn_inicio = new javax.swing.JMenu();
-      jMenuItem4 = new javax.swing.JMenuItem();
+      menu_inicio = new javax.swing.JMenuItem();
       mn_buscar_cliente = new javax.swing.JMenu();
       jMenuItem3 = new javax.swing.JMenuItem();
       mn_ver_buses = new javax.swing.JMenu();
-      menu_buses = new javax.swing.JMenuItem();
+      jMenuItem1 = new javax.swing.JMenuItem();
+      menu_destinos = new javax.swing.JMenu();
+      menu_ver_destinos = new javax.swing.JMenuItem();
+      menu_destinos1 = new javax.swing.JMenu();
+      menu_entregas = new javax.swing.JMenuItem();
       jMenu1 = new javax.swing.JMenu();
 
       jMenuItem2.setText("jMenuItem2");
@@ -235,7 +239,7 @@ public class BuscarCliente extends javax.swing.JFrame {
                      .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                      .addComponent(ta_bus1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                  .addComponent(ta_bus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, Short.MAX_VALUE)
+                  .addComponent(ta_bus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                   .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGap(0, 36, Short.MAX_VALUE))
       );
@@ -279,9 +283,9 @@ public class BuscarCliente extends javax.swing.JFrame {
       mn_inicio.setMinimumSize(new java.awt.Dimension(60, 40));
       mn_inicio.setPreferredSize(new java.awt.Dimension(70, 28));
 
-      jMenuItem4.setText("Inicio");
-      jMenuItem4.addActionListener(this::jMenuItem4ActionPerformed);
-      mn_inicio.add(jMenuItem4);
+      menu_inicio.setText("Inicio");
+      menu_inicio.addActionListener(this::menu_inicioActionPerformed);
+      mn_inicio.add(menu_inicio);
 
       jMenuBar1.add(mn_inicio);
 
@@ -315,14 +319,50 @@ public class BuscarCliente extends javax.swing.JFrame {
       mn_ver_buses.setMinimumSize(new java.awt.Dimension(60, 40));
       mn_ver_buses.setPreferredSize(new java.awt.Dimension(70, 28));
 
-      menu_buses.setText("Ver buses");
-      menu_buses.addActionListener(this::menu_busesActionPerformed);
-      mn_ver_buses.add(menu_buses);
+      jMenuItem1.setText("Ver buses");
+      jMenuItem1.addActionListener(this::jMenuItem1ActionPerformed);
+      mn_ver_buses.add(jMenuItem1);
 
       jMenuBar1.add(mn_ver_buses);
 
+      menu_destinos.setBackground(new java.awt.Color(110, 97, 179));
+      menu_destinos.setForeground(new java.awt.Color(255, 255, 255));
+      menu_destinos.setText("Destinos");
+      menu_destinos.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+      menu_destinos.setHideActionText(true);
+      menu_destinos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+      menu_destinos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+      menu_destinos.setIconTextGap(13);
+      menu_destinos.setMaximumSize(new java.awt.Dimension(88, 32767));
+      menu_destinos.setMinimumSize(new java.awt.Dimension(60, 40));
+      menu_destinos.setPreferredSize(new java.awt.Dimension(70, 28));
+
+      menu_ver_destinos.setText("Ver destinos");
+      menu_ver_destinos.addActionListener(this::menu_ver_destinosActionPerformed);
+      menu_destinos.add(menu_ver_destinos);
+
+      jMenuBar1.add(menu_destinos);
+
+      menu_destinos1.setBackground(new java.awt.Color(110, 97, 179));
+      menu_destinos1.setForeground(new java.awt.Color(255, 255, 255));
+      menu_destinos1.setText("Entregas");
+      menu_destinos1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+      menu_destinos1.setHideActionText(true);
+      menu_destinos1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+      menu_destinos1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+      menu_destinos1.setIconTextGap(13);
+      menu_destinos1.setMaximumSize(new java.awt.Dimension(88, 32767));
+      menu_destinos1.setMinimumSize(new java.awt.Dimension(60, 40));
+      menu_destinos1.setPreferredSize(new java.awt.Dimension(70, 28));
+
+      menu_entregas.setText("Ver entregas");
+      menu_entregas.addActionListener(this::menu_entregasActionPerformed);
+      menu_destinos1.add(menu_entregas);
+
+      jMenuBar1.add(menu_destinos1);
+
       jMenu1.setBackground(new java.awt.Color(110, 97, 179));
-      jMenu1.setMaximumSize(new java.awt.Dimension(500, 32767));
+      jMenu1.setMaximumSize(new java.awt.Dimension(310, 32767));
       jMenuBar1.add(jMenu1);
 
       setJMenuBar(jMenuBar1);
@@ -341,10 +381,6 @@ public class BuscarCliente extends javax.swing.JFrame {
       pack();
    }// </editor-fold>//GEN-END:initComponents
 
-   private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-      // TODO add your handling code here:
-   }//GEN-LAST:event_jMenuItem3ActionPerformed
-
    private void tf_ci_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ci_clienteActionPerformed
       // TODO add your handling code here:
    }//GEN-LAST:event_tf_ci_clienteActionPerformed
@@ -362,21 +398,45 @@ public class BuscarCliente extends javax.swing.JFrame {
       ta_remitente.setText("Remitente:\n\nNombre: " + nombre + "\nCelular: " + celular + "\nC.I.: " + ci);
    }//GEN-LAST:event_btn_buscar_clienteActionPerformed
 
-   private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+   private void menu_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_inicioActionPerformed
       Inicio inicio = new Inicio();
       inicio.setVisible(true);
       inicio.setLocationRelativeTo(null);
-      this.setVisible(true);
+      this.setVisible(false);
       this.dispose();
-   }//GEN-LAST:event_jMenuItem4ActionPerformed
+   }//GEN-LAST:event_menu_inicioActionPerformed
 
-   private void menu_busesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_busesActionPerformed
+   private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+      BuscarCliente bc = new BuscarCliente();
+      bc.setVisible(true);
+      bc.setLocationRelativeTo(null);
+      this.setVisible(false);
+      this.dispose();
+   }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+   private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
       Buses buses = new Buses();
       buses.setVisible(true);
       buses.setLocationRelativeTo(null);
       this.setVisible(false);
       this.dispose();
-   }//GEN-LAST:event_menu_busesActionPerformed
+   }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+   private void menu_ver_destinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_ver_destinosActionPerformed
+      Destinos destino = new Destinos();
+      destino.setVisible(true);
+      destino.setLocationRelativeTo(null);
+      this.setVisible(false);
+      this.dispose();
+   }//GEN-LAST:event_menu_ver_destinosActionPerformed
+
+   private void menu_entregasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_entregasActionPerformed
+      Entregas entregas = new Entregas();
+      entregas.setVisible(true);
+      entregas.setLocationRelativeTo(null);
+      this.setVisible(false);
+      this.dispose();
+   }//GEN-LAST:event_menu_entregasActionPerformed
 
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -385,9 +445,9 @@ public class BuscarCliente extends javax.swing.JFrame {
    private javax.swing.JLabel jLabel2;
    private javax.swing.JMenu jMenu1;
    private javax.swing.JMenuBar jMenuBar1;
+   private javax.swing.JMenuItem jMenuItem1;
    private javax.swing.JMenuItem jMenuItem2;
    private javax.swing.JMenuItem jMenuItem3;
-   private javax.swing.JMenuItem jMenuItem4;
    private javax.swing.JPanel jPanel1;
    private javax.swing.JPanel jPanel2;
    private javax.swing.JPanel jPanel3;
@@ -395,7 +455,11 @@ public class BuscarCliente extends javax.swing.JFrame {
    private javax.swing.JPanel jPanel5;
    private javax.swing.JPanel jPanel6;
    private javax.swing.JPanel jPanel7;
-   private javax.swing.JMenuItem menu_buses;
+   private javax.swing.JMenu menu_destinos;
+   private javax.swing.JMenu menu_destinos1;
+   private javax.swing.JMenuItem menu_entregas;
+   private javax.swing.JMenuItem menu_inicio;
+   private javax.swing.JMenuItem menu_ver_destinos;
    private javax.swing.JMenu mn_buscar_cliente;
    private javax.swing.JMenu mn_inicio;
    private javax.swing.JMenu mn_ver_buses;

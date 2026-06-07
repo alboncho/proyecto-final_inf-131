@@ -3,6 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ui;
+
+import modelos.*;
+import persistencia.*;
+import estructuras.*;
+import java.util.ArrayList;
 import com.formdev.flatlaf.FlatDarkLaf;
 
 /**
@@ -12,7 +17,10 @@ import com.formdev.flatlaf.FlatDarkLaf;
 public class Inicio extends javax.swing.JFrame {
    
    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Inicio.class.getName());
-
+   
+   // INICIANDO MULTICOLA 
+   String[] destinos = {"La Paz", "Cochabamba", "Oruro", "Santa Cruz"};
+   
    /**
     * Creates new form Inicio
     */
@@ -60,8 +68,6 @@ public class Inicio extends javax.swing.JFrame {
       jLabel15 = new javax.swing.JLabel();
       jLabel16 = new javax.swing.JLabel();
       tf_fecha = new javax.swing.JTextField();
-      jLabel17 = new javax.swing.JLabel();
-      tf_bus_placa = new javax.swing.JTextField();
       tf_descripcion = new javax.swing.JTextField();
       jLabel22 = new javax.swing.JLabel();
       tf_destino = new javax.swing.JTextField();
@@ -69,10 +75,15 @@ public class Inicio extends javax.swing.JFrame {
       jPanel5 = new javax.swing.JPanel();
       jMenuBar1 = new javax.swing.JMenuBar();
       mn_inicio = new javax.swing.JMenu();
+      menu_inicio = new javax.swing.JMenuItem();
       mn_buscar_cliente = new javax.swing.JMenu();
       jMenuItem3 = new javax.swing.JMenuItem();
       mn_ver_buses = new javax.swing.JMenu();
       jMenuItem1 = new javax.swing.JMenuItem();
+      menu_destinos = new javax.swing.JMenu();
+      menu_ver_destinos = new javax.swing.JMenuItem();
+      menu_destinos1 = new javax.swing.JMenu();
+      menu_entregas = new javax.swing.JMenuItem();
       jMenu1 = new javax.swing.JMenu();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -195,7 +206,7 @@ public class Inicio extends javax.swing.JFrame {
       jPanel3Layout.setVerticalGroup(
          jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-            .addContainerGap(41, Short.MAX_VALUE)
+            .addContainerGap(43, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                .addGroup(jPanel3Layout.createSequentialGroup()
                   .addComponent(jLabel21)
@@ -245,10 +256,6 @@ public class Inicio extends javax.swing.JFrame {
 
       tf_fecha.addActionListener(this::tf_fechaActionPerformed);
 
-      jLabel17.setFont(new java.awt.Font("Cantarell", 1, 10)); // NOI18N
-      jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-      jLabel17.setText("Bus placa:");
-
       jLabel22.setFont(new java.awt.Font("Cantarell", 1, 10)); // NOI18N
       jLabel22.setForeground(new java.awt.Color(255, 255, 255));
       jLabel22.setText("Destino:");
@@ -265,35 +272,24 @@ public class Inicio extends javax.swing.JFrame {
                   .addComponent(tf_destino, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addComponent(tf_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-               .addGroup(jPanel4Layout.createSequentialGroup()
-                  .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(jLabel16)
-                     .addComponent(tf_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                  .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(jLabel17)
-                     .addComponent(tf_bus_placa, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+               .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(jLabel16)
+                  .addComponent(tf_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(tf_estado, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
+               .addComponent(tf_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(16, 16, 16))
          .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                .addContainerGap()
                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                     .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)
-                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                           .addComponent(jLabel11)
-                           .addComponent(tf_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(294, Short.MAX_VALUE)))
-                  .addGroup(jPanel4Layout.createSequentialGroup()
-                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel10)
-                        .addComponent(jLabel13)
-                        .addComponent(tf_peso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                     .addContainerGap(53, Short.MAX_VALUE)))))
+                  .addComponent(jLabel12)
+                  .addComponent(jLabel11)
+                  .addComponent(tf_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(jLabel10)
+                  .addComponent(jLabel13)
+                  .addComponent(tf_peso, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addContainerGap(294, Short.MAX_VALUE)))
       );
       jPanel4Layout.setVerticalGroup(
          jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,11 +305,8 @@ public class Inicio extends javax.swing.JFrame {
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addComponent(tf_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addGroup(jPanel4Layout.createSequentialGroup()
-                  .addComponent(jLabel17)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                     .addComponent(tf_bus_placa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(tf_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                  .addGap(19, 19, 19)
+                  .addComponent(tf_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGap(18, 18, 18)
             .addComponent(jLabel22)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -405,6 +398,11 @@ public class Inicio extends javax.swing.JFrame {
       mn_inicio.setMaximumSize(new java.awt.Dimension(70, 32767));
       mn_inicio.setMinimumSize(new java.awt.Dimension(60, 40));
       mn_inicio.setPreferredSize(new java.awt.Dimension(70, 28));
+
+      menu_inicio.setText("Inicio");
+      menu_inicio.addActionListener(this::menu_inicioActionPerformed);
+      mn_inicio.add(menu_inicio);
+
       jMenuBar1.add(mn_inicio);
 
       mn_buscar_cliente.setBackground(new java.awt.Color(110, 97, 179));
@@ -443,8 +441,44 @@ public class Inicio extends javax.swing.JFrame {
 
       jMenuBar1.add(mn_ver_buses);
 
+      menu_destinos.setBackground(new java.awt.Color(110, 97, 179));
+      menu_destinos.setForeground(new java.awt.Color(255, 255, 255));
+      menu_destinos.setText("Destinos");
+      menu_destinos.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+      menu_destinos.setHideActionText(true);
+      menu_destinos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+      menu_destinos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+      menu_destinos.setIconTextGap(13);
+      menu_destinos.setMaximumSize(new java.awt.Dimension(88, 32767));
+      menu_destinos.setMinimumSize(new java.awt.Dimension(60, 40));
+      menu_destinos.setPreferredSize(new java.awt.Dimension(70, 28));
+
+      menu_ver_destinos.setText("Ver destinos");
+      menu_ver_destinos.addActionListener(this::menu_ver_destinosActionPerformed);
+      menu_destinos.add(menu_ver_destinos);
+
+      jMenuBar1.add(menu_destinos);
+
+      menu_destinos1.setBackground(new java.awt.Color(110, 97, 179));
+      menu_destinos1.setForeground(new java.awt.Color(255, 255, 255));
+      menu_destinos1.setText("Entregas");
+      menu_destinos1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+      menu_destinos1.setHideActionText(true);
+      menu_destinos1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+      menu_destinos1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+      menu_destinos1.setIconTextGap(13);
+      menu_destinos1.setMaximumSize(new java.awt.Dimension(88, 32767));
+      menu_destinos1.setMinimumSize(new java.awt.Dimension(60, 40));
+      menu_destinos1.setPreferredSize(new java.awt.Dimension(70, 28));
+
+      menu_entregas.setText("Ver entregas");
+      menu_entregas.addActionListener(this::menu_entregasActionPerformed);
+      menu_destinos1.add(menu_entregas);
+
+      jMenuBar1.add(menu_destinos1);
+
       jMenu1.setBackground(new java.awt.Color(110, 97, 179));
-      jMenu1.setMaximumSize(new java.awt.Dimension(500, 32767));
+      jMenu1.setMaximumSize(new java.awt.Dimension(310, 32767));
       jMenuBar1.add(jMenu1);
 
       setJMenuBar(jMenuBar1);
@@ -466,6 +500,59 @@ public class Inicio extends javax.swing.JFrame {
       pack();
    }// </editor-fold>//GEN-END:initComponents
 
+   private void tf_fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_fechaActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_tf_fechaActionPerformed
+
+   private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
+      // CLIENTE REMITENTE
+      String nombre_r = tf_nombre_remitente.getText();
+      String celular_r = tf_celular_remitente.getText();
+      String ci_r = tf_ci_remitente.getText();
+      
+      Cliente remitente = new Cliente(nombre_r, celular_r, ci_r);
+      
+      // CLIENTE DESTINATARIO
+      String nombre_d = tf_nombre_remitente.getText();
+      String celular_d = tf_celular_remitente.getText();
+      String ci_d = tf_ci_remitente.getText();
+      
+      Cliente destinatario = new Cliente(nombre_d, celular_d, ci_d);
+      
+      // ENCOMIENDA
+      String codigo = tf_codigo.getText();
+      String descripcion = tf_descripcion.getText();
+      String destino = tf_destino.getText();
+      String peso = tf_peso.getText();
+      String estado = tf_estado.getText();
+      String fecha = tf_fecha.getText();
+      
+      Encomienda encomienda = new Encomienda(codigo, descripcion, Double.parseDouble(peso), destino, estado, fecha, remitente, destinatario);
+      
+      // AGREGARLO AL ARCHIVO
+      MC_Encomienda mce = PersistenciaColaEncomienda.cargar();
+      int idx;
+      
+      if (mce == null) { mce = new MC_Encomienda(destinos); }
+      
+      idx = mce.indiceDestino(destino);
+      mce.adicionar(idx, encomienda);
+      
+      PersistenciaColaEncomienda.guardar(mce);
+      
+      ArrayList<Encomienda> le = PersistenciaEncomienda.cargar();
+      le.add(encomienda);
+      PersistenciaEncomienda.guardar(le);
+   }//GEN-LAST:event_btn_agregarActionPerformed
+
+   private void menu_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_inicioActionPerformed
+      Inicio inicio = new Inicio();
+      inicio.setVisible(true);
+      inicio.setLocationRelativeTo(null);
+      this.setVisible(false);
+      this.dispose();
+   }//GEN-LAST:event_menu_inicioActionPerformed
+
    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
       BuscarCliente bc = new BuscarCliente();
       bc.setVisible(true);
@@ -474,14 +561,6 @@ public class Inicio extends javax.swing.JFrame {
       this.dispose();
    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-   private void tf_fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_fechaActionPerformed
-      // TODO add your handling code here:
-   }//GEN-LAST:event_tf_fechaActionPerformed
-
-   private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
-      // TODO add your handling code here:
-   }//GEN-LAST:event_btn_agregarActionPerformed
-
    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
       Buses buses = new Buses();
       buses.setVisible(true);
@@ -489,6 +568,22 @@ public class Inicio extends javax.swing.JFrame {
       this.setVisible(false);
       this.dispose();
    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+   private void menu_ver_destinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_ver_destinosActionPerformed
+      Destinos destino = new Destinos();
+      destino.setVisible(true);
+      destino.setLocationRelativeTo(null);
+      this.setVisible(false);
+      this.dispose();
+   }//GEN-LAST:event_menu_ver_destinosActionPerformed
+
+   private void menu_entregasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_entregasActionPerformed
+      Entregas entregas = new Entregas();
+      entregas.setVisible(true);
+      entregas.setLocationRelativeTo(null);
+      this.setVisible(false);
+      this.dispose();
+   }//GEN-LAST:event_menu_entregasActionPerformed
 
    /**
     * @param args the command line arguments
@@ -524,7 +619,6 @@ public class Inicio extends javax.swing.JFrame {
    private javax.swing.JLabel jLabel13;
    private javax.swing.JLabel jLabel15;
    private javax.swing.JLabel jLabel16;
-   private javax.swing.JLabel jLabel17;
    private javax.swing.JLabel jLabel18;
    private javax.swing.JLabel jLabel19;
    private javax.swing.JLabel jLabel2;
@@ -543,10 +637,14 @@ public class Inicio extends javax.swing.JFrame {
    private javax.swing.JPanel jPanel3;
    private javax.swing.JPanel jPanel4;
    private javax.swing.JPanel jPanel5;
+   private javax.swing.JMenu menu_destinos;
+   private javax.swing.JMenu menu_destinos1;
+   private javax.swing.JMenuItem menu_entregas;
+   private javax.swing.JMenuItem menu_inicio;
+   private javax.swing.JMenuItem menu_ver_destinos;
    private javax.swing.JMenu mn_buscar_cliente;
    private javax.swing.JMenu mn_inicio;
    private javax.swing.JMenu mn_ver_buses;
-   private javax.swing.JTextField tf_bus_placa;
    private javax.swing.JTextField tf_celular_destinatario;
    private javax.swing.JTextField tf_celular_remitente;
    private javax.swing.JTextField tf_ci_destinatario;

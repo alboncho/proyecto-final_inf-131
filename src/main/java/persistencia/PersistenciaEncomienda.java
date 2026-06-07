@@ -1,48 +1,50 @@
-package Persistencia;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-import estructuras.PilaEntrega;
+package persistencia;
+
 import java.io.*;
+import java.util.ArrayList;
+import modelos.Encomienda;
+
 /**
  *
  * @author alboncho
  */
-public class PersistenciaEntrega {
-   private static final String NOMBRE = "datos/DatoEntrega.dat";
+public class PersistenciaEncomienda {
+   private static final String NOMBRE = "datos/DatosEncomienda.dat";
    
-   public static void guardar(PilaEntrega pe) {
-      try { 
+   public static void guardar(ArrayList<Encomienda> lista) {
+      try {
          File archivo = new File(NOMBRE);
          File carpeta = archivo.getParentFile();
          
-         if (carpeta != null && !carpeta.exists()) {
+         if (!carpeta.exists()) {
             carpeta.mkdirs();
          }
          
          ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream(archivo));
          
-         save.writeObject(pe);
+         save.writeObject(lista);
          save.close();
-      } catch (IOException e) {
-         System.err.println("❌ Error al guardar: " + e.getMessage());
+      } catch (IOException er) {
+         er.printStackTrace();
       }
    }
-   
-   public static PilaEntrega cargar() {
+      
+   public static ArrayList<Encomienda> cargar() {
       try {
          ObjectInputStream archivo = new ObjectInputStream(new FileInputStream(NOMBRE));
          
-         PilaEntrega pe = (PilaEntrega) archivo.readObject();
+         ArrayList<Encomienda> lista = (ArrayList<Encomienda>) archivo.readObject();
          archivo.close();
          
-         return pe;
+         return lista;
       } catch (Exception e) {
          System.err.println(e.getMessage());
       }
       
-      return null;
+      return new ArrayList<Encomienda>();
    }
 }

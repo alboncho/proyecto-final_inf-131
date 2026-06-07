@@ -3,13 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package estructuras;
+
 import modelos.Bus;
+import java.io.Serializable;
 
 /**
  *
  * @author alboncho
  */
-public class LD_Bus {
+public class LD_Bus implements Serializable {
    private NodoBus P;
    
    public LD_Bus() {

@@ -4,11 +4,12 @@
  */
 package modelos;
 
+import java.io.Serializable;
 /**
  *
  * @author alboncho
  */
-public class Entrega {
+public class Entrega implements Serializable {
    private int codEntrega;
    private String fechaEntrega;
    private String encargado;
