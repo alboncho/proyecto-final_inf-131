@@ -3,12 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelos;
+import java.io.Serializable;
 
 /**
  *
  * @author alboncho
  */
-public class Bus {
+public class Bus implements Serializable {
    private String placa;
    private String empresa;
    private String destino;

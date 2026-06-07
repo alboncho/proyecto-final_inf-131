@@ -50,10 +50,11 @@ public class BuscarCliente extends javax.swing.JFrame {
       ta_bus1 = new javax.swing.JTextArea();
       jMenuBar1 = new javax.swing.JMenuBar();
       mn_inicio = new javax.swing.JMenu();
+      jMenuItem4 = new javax.swing.JMenuItem();
       mn_buscar_cliente = new javax.swing.JMenu();
       jMenuItem3 = new javax.swing.JMenuItem();
       mn_ver_buses = new javax.swing.JMenu();
-      jMenuItem1 = new javax.swing.JMenuItem();
+      menu_buses = new javax.swing.JMenuItem();
       jMenu1 = new javax.swing.JMenu();
 
       jMenuItem2.setText("jMenuItem2");
@@ -234,7 +235,7 @@ public class BuscarCliente extends javax.swing.JFrame {
                      .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                      .addComponent(ta_bus1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                  .addComponent(ta_bus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                  .addComponent(ta_bus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, Short.MAX_VALUE)
                   .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGap(0, 36, Short.MAX_VALUE))
       );
@@ -277,6 +278,11 @@ public class BuscarCliente extends javax.swing.JFrame {
       mn_inicio.setMaximumSize(new java.awt.Dimension(70, 32767));
       mn_inicio.setMinimumSize(new java.awt.Dimension(60, 40));
       mn_inicio.setPreferredSize(new java.awt.Dimension(70, 28));
+
+      jMenuItem4.setText("Inicio");
+      jMenuItem4.addActionListener(this::jMenuItem4ActionPerformed);
+      mn_inicio.add(jMenuItem4);
+
       jMenuBar1.add(mn_inicio);
 
       mn_buscar_cliente.setBackground(new java.awt.Color(110, 97, 179));
@@ -309,8 +315,9 @@ public class BuscarCliente extends javax.swing.JFrame {
       mn_ver_buses.setMinimumSize(new java.awt.Dimension(60, 40));
       mn_ver_buses.setPreferredSize(new java.awt.Dimension(70, 28));
 
-      jMenuItem1.setText("Ver buses");
-      mn_ver_buses.add(jMenuItem1);
+      menu_buses.setText("Ver buses");
+      menu_buses.addActionListener(this::menu_busesActionPerformed);
+      mn_ver_buses.add(menu_buses);
 
       jMenuBar1.add(mn_ver_buses);
 
@@ -355,6 +362,22 @@ public class BuscarCliente extends javax.swing.JFrame {
       ta_remitente.setText("Remitente:\n\nNombre: " + nombre + "\nCelular: " + celular + "\nC.I.: " + ci);
    }//GEN-LAST:event_btn_buscar_clienteActionPerformed
 
+   private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+      Inicio inicio = new Inicio();
+      inicio.setVisible(true);
+      inicio.setLocationRelativeTo(null);
+      this.setVisible(true);
+      this.dispose();
+   }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+   private void menu_busesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_busesActionPerformed
+      Buses buses = new Buses();
+      buses.setVisible(true);
+      buses.setLocationRelativeTo(null);
+      this.setVisible(false);
+      this.dispose();
+   }//GEN-LAST:event_menu_busesActionPerformed
+
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton btn_buscar_cliente;
@@ -362,9 +385,9 @@ public class BuscarCliente extends javax.swing.JFrame {
    private javax.swing.JLabel jLabel2;
    private javax.swing.JMenu jMenu1;
    private javax.swing.JMenuBar jMenuBar1;
-   private javax.swing.JMenuItem jMenuItem1;
    private javax.swing.JMenuItem jMenuItem2;
    private javax.swing.JMenuItem jMenuItem3;
+   private javax.swing.JMenuItem jMenuItem4;
    private javax.swing.JPanel jPanel1;
    private javax.swing.JPanel jPanel2;
    private javax.swing.JPanel jPanel3;
@@ -372,6 +395,7 @@ public class BuscarCliente extends javax.swing.JFrame {
    private javax.swing.JPanel jPanel5;
    private javax.swing.JPanel jPanel6;
    private javax.swing.JPanel jPanel7;
+   private javax.swing.JMenuItem menu_buses;
    private javax.swing.JMenu mn_buscar_cliente;
    private javax.swing.JMenu mn_inicio;
    private javax.swing.JMenu mn_ver_buses;

@@ -3,12 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelos;
+import java.io.Serializable;
 
 /**
  *
  * @author alboncho
  */
-public class Cliente {
+public class Cliente implements Serializable {
    private String nombre;
    private String celular;
    private String ci;

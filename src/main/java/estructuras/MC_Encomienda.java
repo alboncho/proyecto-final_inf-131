@@ -9,14 +9,17 @@ import modelos.Encomienda;
  * @author alboncho
  */
 public class MC_Encomienda {
-   private int n = 100;
-   private ColaEncomienda[] A = new ColaEncomienda[100];
+   private int n;
+   private ColaEncomienda[] A;
+   private String[] destinos;
    
-   public MC_Encomienda(int n) {
-      this.n = n;
+   public MC_Encomienda(String[] destinos) {
+      this.n = destinos.length;
+      
       for (int i=0; i<n; i++) {
          A[i] = new ColaEncomienda();
       }
+      this.destinos = destinos;
    }
    
    public int nroElem(int i) {
@@ -38,5 +41,13 @@ public class MC_Encomienda {
    public int getN() { return this.n; }
    
    public void setN(int n) { this.n = n; }
+   
+   public int indiceDestino(String destino) {
+      for (int i = 0; i < n; i++) {
+         if (destinos[i].equalsIgnoreCase(destino)) return i;
+      }
+      
+      return -1;
+   }
    
 }

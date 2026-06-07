@@ -3,12 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelos;
+import java.io.Serializable;
 
 /**
  *
  * @author alboncho
  */
-public class Encomienda {
+public class Encomienda implements Serializable {
    private String codigo;
    private String descripcion;
    private double peso;
