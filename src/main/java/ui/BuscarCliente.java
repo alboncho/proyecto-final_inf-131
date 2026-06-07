@@ -20,7 +20,6 @@ public class BuscarCliente extends javax.swing.JFrame {
    public BuscarCliente() {
       initComponents();
       jMenuBar1.setOpaque(true);
-      jMenuBar1.setOpaque(true);
    }
 
    /**
@@ -53,8 +52,10 @@ public class BuscarCliente extends javax.swing.JFrame {
       menu_inicio = new javax.swing.JMenuItem();
       mn_buscar_cliente = new javax.swing.JMenu();
       jMenuItem3 = new javax.swing.JMenuItem();
+      jMenuItem4 = new javax.swing.JMenuItem();
       mn_ver_buses = new javax.swing.JMenu();
       jMenuItem1 = new javax.swing.JMenuItem();
+      menu_despachar = new javax.swing.JMenuItem();
       menu_destinos = new javax.swing.JMenu();
       menu_ver_destinos = new javax.swing.JMenuItem();
       menu_destinos1 = new javax.swing.JMenu();
@@ -239,7 +240,7 @@ public class BuscarCliente extends javax.swing.JFrame {
                      .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                      .addComponent(ta_bus1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                  .addComponent(ta_bus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                  .addComponent(ta_bus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, Short.MAX_VALUE)
                   .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGap(0, 36, Short.MAX_VALUE))
       );
@@ -305,6 +306,10 @@ public class BuscarCliente extends javax.swing.JFrame {
       jMenuItem3.addActionListener(this::jMenuItem3ActionPerformed);
       mn_buscar_cliente.add(jMenuItem3);
 
+      jMenuItem4.setText("Enc. pendientes");
+      jMenuItem4.addActionListener(this::jMenuItem4ActionPerformed);
+      mn_buscar_cliente.add(jMenuItem4);
+
       jMenuBar1.add(mn_buscar_cliente);
 
       mn_ver_buses.setBackground(new java.awt.Color(110, 97, 179));
@@ -322,6 +327,10 @@ public class BuscarCliente extends javax.swing.JFrame {
       jMenuItem1.setText("Ver buses");
       jMenuItem1.addActionListener(this::jMenuItem1ActionPerformed);
       mn_ver_buses.add(jMenuItem1);
+
+      menu_despachar.setText("Despachar");
+      menu_despachar.addActionListener(this::menu_despacharActionPerformed);
+      mn_ver_buses.add(menu_despachar);
 
       jMenuBar1.add(mn_ver_buses);
 
@@ -438,6 +447,22 @@ public class BuscarCliente extends javax.swing.JFrame {
       this.dispose();
    }//GEN-LAST:event_menu_entregasActionPerformed
 
+   private void menu_despacharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_despacharActionPerformed
+      Despachar despachar = new Despachar();
+      despachar.setVisible(true);
+      despachar.setLocationRelativeTo(null);
+      this.setVisible(false);
+      this.dispose();
+   }//GEN-LAST:event_menu_despacharActionPerformed
+
+   private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+      Pendiente pen = new Pendiente();
+      pen.setVisible(true);
+      pen.setLocationRelativeTo(null);
+      this.setVisible(false);
+      this.dispose();
+   }//GEN-LAST:event_jMenuItem4ActionPerformed
+
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton btn_buscar_cliente;
@@ -448,6 +473,7 @@ public class BuscarCliente extends javax.swing.JFrame {
    private javax.swing.JMenuItem jMenuItem1;
    private javax.swing.JMenuItem jMenuItem2;
    private javax.swing.JMenuItem jMenuItem3;
+   private javax.swing.JMenuItem jMenuItem4;
    private javax.swing.JPanel jPanel1;
    private javax.swing.JPanel jPanel2;
    private javax.swing.JPanel jPanel3;
@@ -455,6 +481,7 @@ public class BuscarCliente extends javax.swing.JFrame {
    private javax.swing.JPanel jPanel5;
    private javax.swing.JPanel jPanel6;
    private javax.swing.JPanel jPanel7;
+   private javax.swing.JMenuItem menu_despachar;
    private javax.swing.JMenu menu_destinos;
    private javax.swing.JMenu menu_destinos1;
    private javax.swing.JMenuItem menu_entregas;

@@ -34,6 +34,7 @@ public class PersistenciaColaEncomienda {
    
    public static MC_Encomienda cargar() {
       try {
+         
          ObjectInputStream archivo = new ObjectInputStream(new FileInputStream(NOMBRE));
          
          MC_Encomienda me = (MC_Encomienda) archivo.readObject();

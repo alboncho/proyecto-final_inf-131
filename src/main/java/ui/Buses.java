@@ -4,6 +4,12 @@
  */
 package ui;
 
+import estructuras.LD_Bus;
+import estructuras.NodoBus;
+import javax.swing.table.DefaultTableModel;
+import modelos.Bus;
+import persistencia.PersistenciaBus;
+
 /**
  *
  * @author alboncho
@@ -19,6 +25,8 @@ public class Buses extends javax.swing.JFrame {
       initComponents();
       this.setLocationRelativeTo(null);
       jMenuBar1.setOpaque(true);
+      
+      this.mostrarTabla();
    }
 
    /**
@@ -30,16 +38,36 @@ public class Buses extends javax.swing.JFrame {
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
    private void initComponents() {
 
+      buttonGroup1 = new javax.swing.ButtonGroup();
       jPanel1 = new javax.swing.JPanel();
       jScrollPane1 = new javax.swing.JScrollPane();
-      jTable1 = new javax.swing.JTable();
+      tabla_buses = new javax.swing.JTable();
+      jLabel2 = new javax.swing.JLabel();
+      jPanel2 = new javax.swing.JPanel();
+      jLabel1 = new javax.swing.JLabel();
+      jLabel3 = new javax.swing.JLabel();
+      tf_placa = new javax.swing.JTextField();
+      tf_destino = new javax.swing.JTextField();
+      jLabel4 = new javax.swing.JLabel();
+      jLabel5 = new javax.swing.JLabel();
+      tf_capacidad = new javax.swing.JTextField();
+      jLabel6 = new javax.swing.JLabel();
+      tf_empresa = new javax.swing.JTextField();
+      jLabel7 = new javax.swing.JLabel();
+      tf_hora_salida = new javax.swing.JTextField();
+      jLabel8 = new javax.swing.JLabel();
+      rb_si = new javax.swing.JRadioButton();
+      rb_si1 = new javax.swing.JRadioButton();
+      btn_agregar_bus = new javax.swing.JButton();
       jMenuBar1 = new javax.swing.JMenuBar();
       mn_inicio = new javax.swing.JMenu();
       menu_inicio = new javax.swing.JMenuItem();
       mn_buscar_cliente = new javax.swing.JMenu();
       jMenuItem3 = new javax.swing.JMenuItem();
+      jMenuItem2 = new javax.swing.JMenuItem();
       mn_ver_buses = new javax.swing.JMenu();
       jMenuItem1 = new javax.swing.JMenuItem();
+      menu_despachar = new javax.swing.JMenuItem();
       menu_destinos = new javax.swing.JMenu();
       menu_ver_destinos = new javax.swing.JMenuItem();
       menu_destinos1 = new javax.swing.JMenu();
@@ -48,34 +76,157 @@ public class Buses extends javax.swing.JFrame {
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-      jTable1.setModel(new javax.swing.table.DefaultTableModel(
+      tabla_buses.setModel(new javax.swing.table.DefaultTableModel(
          new Object [][] {
-            {null, null, null, null},
-            {null, null, null, null},
-            {null, null, null, null},
-            {null, null, null, null}
+            {null, null, null, null, null, null},
+            {null, null, null, null, null, null},
+            {null, null, null, null, null, null},
+            {null, null, null, null, null, null}
          },
          new String [] {
-            "Placa", "Destino", "Disponible", "Capacidad"
+            "Placa", "Destino", "Disponible", "Capacidad", "Empresa", "Hora de salida"
          }
       ));
-      jScrollPane1.setViewportView(jTable1);
+      jScrollPane1.setViewportView(tabla_buses);
+
+      jLabel2.setFont(new java.awt.Font("Cantarell", 1, 24)); // NOI18N
+      jLabel2.setText("Buses");
+
+      jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+
+      jLabel1.setFont(new java.awt.Font("Cantarell", 1, 12)); // NOI18N
+      jLabel1.setForeground(new java.awt.Color(255, 102, 0));
+      jLabel1.setText("Agregar Bus:");
+
+      jLabel3.setText("Placa:");
+
+      jLabel4.setText("Destino");
+
+      jLabel5.setText("Disponible:");
+
+      jLabel6.setText("Capacidad (kg):");
+
+      jLabel7.setText("Empresa:");
+
+      jLabel8.setText("Hora de salida:");
+
+      buttonGroup1.add(rb_si);
+      rb_si.setText("Si");
+      rb_si.addActionListener(this::rb_siActionPerformed);
+
+      buttonGroup1.add(rb_si1);
+      rb_si1.setText("No");
+      rb_si1.addActionListener(this::rb_si1ActionPerformed);
+
+      javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+      jPanel2.setLayout(jPanel2Layout);
+      jPanel2Layout.setHorizontalGroup(
+         jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(jPanel2Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(jLabel1)
+               .addGroup(jPanel2Layout.createSequentialGroup()
+                  .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addComponent(jLabel3)
+                     .addComponent(tf_placa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addGap(18, 18, 18)
+                  .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addComponent(jLabel4)
+                     .addComponent(tf_destino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+               .addGroup(jPanel2Layout.createSequentialGroup()
+                  .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addComponent(jLabel7)
+                     .addComponent(tf_empresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addGap(18, 18, 18)
+                  .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addComponent(jLabel8)
+                     .addComponent(tf_hora_salida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+               .addComponent(rb_si1)
+               .addGroup(jPanel2Layout.createSequentialGroup()
+                  .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addComponent(jLabel5)
+                     .addComponent(rb_si))
+                  .addGap(31, 31, 31)
+                  .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addComponent(jLabel6)
+                     .addComponent(tf_capacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+      );
+      jPanel2Layout.setVerticalGroup(
+         jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+               .addGroup(jPanel2Layout.createSequentialGroup()
+                  .addComponent(jLabel4)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(tf_destino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addGroup(jPanel2Layout.createSequentialGroup()
+                  .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(jLabel3)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(tf_placa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                  .addGroup(jPanel2Layout.createSequentialGroup()
+                     .addComponent(jLabel5)
+                     .addGap(30, 30, 30))
+                  .addComponent(rb_si))
+               .addGroup(jPanel2Layout.createSequentialGroup()
+                  .addComponent(jLabel6)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(tf_capacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(rb_si1)
+            .addGap(20, 20, 20)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+               .addGroup(jPanel2Layout.createSequentialGroup()
+                  .addComponent(jLabel7)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(tf_empresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addGroup(jPanel2Layout.createSequentialGroup()
+                  .addComponent(jLabel8)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(tf_hora_salida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addContainerGap())
+      );
+
+      btn_agregar_bus.setBackground(new java.awt.Color(128, 255, 128));
+      btn_agregar_bus.setForeground(new java.awt.Color(51, 51, 51));
+      btn_agregar_bus.setText("Agregar");
+      btn_agregar_bus.addActionListener(this::btn_agregar_busActionPerformed);
 
       javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
       jPanel1.setLayout(jPanel1Layout);
       jPanel1Layout.setHorizontalGroup(
          jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-            .addContainerGap(24, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap())
+         .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(28, 28, 28)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(jLabel2)
+               .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(18, 18, 18)
+                  .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                     .addComponent(btn_agregar_bus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addContainerGap(33, Short.MAX_VALUE))
       );
       jPanel1Layout.setVerticalGroup(
          jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGap(40, 40, 40)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(70, Short.MAX_VALUE))
+         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addContainerGap(25, Short.MAX_VALUE)
+            .addComponent(jLabel2)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                  .addComponent(btn_agregar_bus)))
+            .addGap(49, 49, 49))
       );
 
       jMenuBar1.setBackground(new java.awt.Color(110, 97, 179));
@@ -115,6 +266,10 @@ public class Buses extends javax.swing.JFrame {
       jMenuItem3.addActionListener(this::jMenuItem3ActionPerformed);
       mn_buscar_cliente.add(jMenuItem3);
 
+      jMenuItem2.setText("Enc. pendientes");
+      jMenuItem2.addActionListener(this::jMenuItem2ActionPerformed);
+      mn_buscar_cliente.add(jMenuItem2);
+
       jMenuBar1.add(mn_buscar_cliente);
 
       mn_ver_buses.setBackground(new java.awt.Color(110, 97, 179));
@@ -132,6 +287,10 @@ public class Buses extends javax.swing.JFrame {
       jMenuItem1.setText("Ver buses");
       jMenuItem1.addActionListener(this::jMenuItem1ActionPerformed);
       mn_ver_buses.add(jMenuItem1);
+
+      menu_despachar.setText("Despachar");
+      menu_despachar.addActionListener(this::menu_despacharActionPerformed);
+      mn_ver_buses.add(menu_despachar);
 
       jMenuBar1.add(mn_ver_buses);
 
@@ -231,6 +390,88 @@ public class Buses extends javax.swing.JFrame {
       this.dispose();
    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+   private void btn_agregar_busActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregar_busActionPerformed
+      // RECUPERAR VALORES 
+      String placa = tf_placa.getText();
+      String destino = tf_destino.getText();
+      String capacidad = tf_capacidad.getText();
+      String horaSalida = tf_hora_salida.getText();
+      String empresa = tf_empresa.getText();
+      boolean disponible = rb_si.isSelected();
+      
+      Bus bus = new Bus(placa, empresa, destino, horaSalida, Double.parseDouble(capacidad), disponible);
+      
+      // RECUPERAR LISTA BUS DEL ARCHIVO Y AGREGAR BUS 
+      LD_Bus ldb = PersistenciaBus.cargar();
+      ldb.adiFinal(bus);
+      
+      this.actualizarTabla(ldb);
+
+      // ACTUALIZAR ARCHIVO 
+      PersistenciaBus.guardar(ldb);
+      
+      this.limpiarCampos();
+   }//GEN-LAST:event_btn_agregar_busActionPerformed
+
+   private void actualizarTabla(LD_Bus ldb) {
+      DefaultTableModel modelo = (DefaultTableModel) tabla_buses.getModel();
+      modelo.setRowCount(0);
+      
+      NodoBus R = ldb.getP();
+      
+      while (R.getSig() != null) {
+         modelo.addRow(new Object[] {
+            R.getDato().getPlaca(),
+            R.getDato().getDestino(),
+            R.getDato().isDisponible(),
+            R.getDato().getCapacidadCarga(),
+            R.getDato().getEmpresa(),
+            R.getDato().getHoraSalida()
+         });
+         
+         R = R.getSig();
+      }
+   }
+   
+   private void mostrarTabla() {
+      LD_Bus ldb = PersistenciaBus.cargar();
+      this.actualizarTabla(ldb);
+   }
+   
+   public void limpiarCampos() {
+      tf_placa.setText("");
+      tf_destino.setText("");
+      tf_capacidad.setText("");
+      tf_empresa.setText("");
+      tf_hora_salida.setText("");
+      buttonGroup1.clearSelection();
+   }
+   
+   private void rb_siActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_siActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_rb_siActionPerformed
+
+   private void rb_si1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_si1ActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_rb_si1ActionPerformed
+
+   private void menu_despacharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_despacharActionPerformed
+      Despachar despachar = new Despachar();
+      despachar.setVisible(true);
+      despachar.setLocationRelativeTo(null);
+      this.setVisible(false);
+      this.dispose();
+   }//GEN-LAST:event_menu_despacharActionPerformed
+
+   private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+
+      Pendiente pen = new Pendiente();
+      pen.setVisible(true);
+      pen.setLocationRelativeTo(null);
+      this.setVisible(false);
+      this.dispose();
+   }//GEN-LAST:event_jMenuItem2ActionPerformed
+
    /**
     * @param args the command line arguments
     */
@@ -257,13 +498,25 @@ public class Buses extends javax.swing.JFrame {
    }
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
+   private javax.swing.JButton btn_agregar_bus;
+   private javax.swing.ButtonGroup buttonGroup1;
+   private javax.swing.JLabel jLabel1;
+   private javax.swing.JLabel jLabel2;
+   private javax.swing.JLabel jLabel3;
+   private javax.swing.JLabel jLabel4;
+   private javax.swing.JLabel jLabel5;
+   private javax.swing.JLabel jLabel6;
+   private javax.swing.JLabel jLabel7;
+   private javax.swing.JLabel jLabel8;
    private javax.swing.JMenu jMenu1;
    private javax.swing.JMenuBar jMenuBar1;
    private javax.swing.JMenuItem jMenuItem1;
+   private javax.swing.JMenuItem jMenuItem2;
    private javax.swing.JMenuItem jMenuItem3;
    private javax.swing.JPanel jPanel1;
+   private javax.swing.JPanel jPanel2;
    private javax.swing.JScrollPane jScrollPane1;
-   private javax.swing.JTable jTable1;
+   private javax.swing.JMenuItem menu_despachar;
    private javax.swing.JMenu menu_destinos;
    private javax.swing.JMenu menu_destinos1;
    private javax.swing.JMenuItem menu_entregas;
@@ -272,5 +525,13 @@ public class Buses extends javax.swing.JFrame {
    private javax.swing.JMenu mn_buscar_cliente;
    private javax.swing.JMenu mn_inicio;
    private javax.swing.JMenu mn_ver_buses;
+   private javax.swing.JRadioButton rb_si;
+   private javax.swing.JRadioButton rb_si1;
+   private javax.swing.JTable tabla_buses;
+   private javax.swing.JTextField tf_capacidad;
+   private javax.swing.JTextField tf_destino;
+   private javax.swing.JTextField tf_empresa;
+   private javax.swing.JTextField tf_hora_salida;
+   private javax.swing.JTextField tf_placa;
    // End of variables declaration//GEN-END:variables
 }

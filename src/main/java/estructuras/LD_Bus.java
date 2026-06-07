@@ -22,6 +22,14 @@ public class LD_Bus implements Serializable {
       return this.P == null;
    }
    
+   public void setP(NodoBus R) {
+      this.P = R;
+   }
+   
+   public NodoBus getP() {
+      return this.P;
+   }
+   
    public int nroNodos() {
       int c = 0;
       
@@ -44,7 +52,7 @@ public class LD_Bus implements Serializable {
       this.P = nuevo;
    }
    
-   public void adFinal(Bus b) {
+   public void adiFinal(Bus b) {
       NodoBus nuevo = new NodoBus();
       nuevo.setDato(b);
       

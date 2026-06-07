@@ -16,10 +16,12 @@ public class MC_Encomienda implements Serializable {
    
    public MC_Encomienda(String[] destinos) {
       this.n = destinos.length;
+      A = new ColaEncomienda[this.n];
       
       for (int i=0; i<n; i++) {
          A[i] = new ColaEncomienda();
       }
+      
       this.destinos = destinos;
    }
    
@@ -32,6 +34,14 @@ public class MC_Encomienda implements Serializable {
    public boolean esLlena(int i) { return A[i].esLlena(); }
    
    public void adicionar(int i, Encomienda e) { A[i].adi(e); }
+
+   public ColaEncomienda[] getA() {
+      return A;
+   }
+
+   public void setA(ColaEncomienda[] A) {
+      this.A = A;
+   }
    
    public Encomienda eliminar(int i) { return A[i].eli(); }
    

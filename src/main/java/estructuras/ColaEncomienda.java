@@ -45,7 +45,7 @@ public class ColaEncomienda extends VectorEncomienda implements Serializable {
       
       if (!this.esVacia()) {
          this.fr++;
-         this.v[this.fr] = x;
+         x = this.v[this.fr];
       } else
          System.out.println("Cola vacia");
       

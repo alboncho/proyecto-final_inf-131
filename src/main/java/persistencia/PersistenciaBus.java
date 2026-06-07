@@ -19,7 +19,7 @@ public class PersistenciaBus {
          File archivo = new File(NOMBRE);
          File carpeta = archivo.getParentFile();
          
-         if (carpeta != null && !carpeta.exists()) {
+         if (carpeta != null || !carpeta.exists()) {
             carpeta.mkdirs();
          }
          
@@ -44,6 +44,6 @@ public class PersistenciaBus {
          System.err.println(e.getMessage());
       }
       
-      return null;
+      return new LD_Bus();
    }
 }

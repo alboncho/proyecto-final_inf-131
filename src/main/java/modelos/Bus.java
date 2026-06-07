@@ -59,7 +59,7 @@ public class Bus implements Serializable {
       this.empresa = empresa;
    }
 
-   public String getDestino() {
+   public String getDestino() {  
       return destino;
    }
 

@@ -34,7 +34,7 @@ public class Encomienda implements Serializable {
 
    public Encomienda(String codigo, String descripcion, double peso,
                      String destino, String estado, String fechaRegistro,
-                     Cliente remitente, Cliente destinatario, Bus busAsignado) {
+                     Cliente remitente, Cliente destinatario) {
       this.codigo = codigo;
       this.descripcion = descripcion;
       this.peso = peso;
@@ -43,7 +43,6 @@ public class Encomienda implements Serializable {
       this.fechaRegistro = fechaRegistro;
       this.remitente = remitente;
       this.destinatario = destinatario;
-      this.busAsignado = busAsignado;
    }
 
    // Getters

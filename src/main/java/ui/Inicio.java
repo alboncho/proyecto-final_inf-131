@@ -19,7 +19,7 @@ public class Inicio extends javax.swing.JFrame {
    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Inicio.class.getName());
    
    // INICIANDO MULTICOLA 
-   String[] destinos = {"La Paz", "Cochabamba", "Oruro", "Santa Cruz"};
+   String[] destinos = {"La Paz", "Cochabamba", "Oruro", "Santa Cruz", "Pando"};
    
    /**
     * Creates new form Inicio
@@ -78,8 +78,10 @@ public class Inicio extends javax.swing.JFrame {
       menu_inicio = new javax.swing.JMenuItem();
       mn_buscar_cliente = new javax.swing.JMenu();
       jMenuItem3 = new javax.swing.JMenuItem();
+      menu_pendientes = new javax.swing.JMenuItem();
       mn_ver_buses = new javax.swing.JMenu();
       jMenuItem1 = new javax.swing.JMenuItem();
+      menu_despchar = new javax.swing.JMenuItem();
       menu_destinos = new javax.swing.JMenu();
       menu_ver_destinos = new javax.swing.JMenuItem();
       menu_destinos1 = new javax.swing.JMenu();
@@ -252,7 +254,7 @@ public class Inicio extends javax.swing.JFrame {
 
       jLabel16.setFont(new java.awt.Font("Cantarell", 1, 10)); // NOI18N
       jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-      jLabel16.setText("Fecha:");
+      jLabel16.setText("Fecha de registro (dd/mm/aa):");
 
       tf_fecha.addActionListener(this::tf_fechaActionPerformed);
 
@@ -273,9 +275,8 @@ public class Inicio extends javax.swing.JFrame {
                .addComponent(tf_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-               .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(jLabel16)
-                  .addComponent(tf_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(tf_fecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING)
                .addComponent(tf_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(16, 16, 16))
@@ -421,6 +422,10 @@ public class Inicio extends javax.swing.JFrame {
       jMenuItem3.addActionListener(this::jMenuItem3ActionPerformed);
       mn_buscar_cliente.add(jMenuItem3);
 
+      menu_pendientes.setText("Enc. Pendientes");
+      menu_pendientes.addActionListener(this::menu_pendientesActionPerformed);
+      mn_buscar_cliente.add(menu_pendientes);
+
       jMenuBar1.add(mn_buscar_cliente);
 
       mn_ver_buses.setBackground(new java.awt.Color(110, 97, 179));
@@ -438,6 +443,10 @@ public class Inicio extends javax.swing.JFrame {
       jMenuItem1.setText("Ver buses");
       jMenuItem1.addActionListener(this::jMenuItem1ActionPerformed);
       mn_ver_buses.add(jMenuItem1);
+
+      menu_despchar.setText("Despachar");
+      menu_despchar.addActionListener(this::menu_despcharActionPerformed);
+      mn_ver_buses.add(menu_despchar);
 
       jMenuBar1.add(mn_ver_buses);
 
@@ -529,28 +538,46 @@ public class Inicio extends javax.swing.JFrame {
       
       Encomienda encomienda = new Encomienda(codigo, descripcion, Double.parseDouble(peso), destino, estado, fecha, remitente, destinatario);
       
-      // AGREGARLO AL ARCHIVO
+      // CRAR MULTICOLA BUSES
       MC_Encomienda mce = PersistenciaColaEncomienda.cargar();
       int idx;
       
-      if (mce == null) { mce = new MC_Encomienda(destinos); }
+      if (mce == null) { System.out.println("entra"); mce = new MC_Encomienda(destinos); }
       
       idx = mce.indiceDestino(destino);
       mce.adicionar(idx, encomienda);
       
+      // GUARDAR EN ARCHIVO (COLA PENDIENTES Y GLOBAL)
       PersistenciaColaEncomienda.guardar(mce);
       
       ArrayList<Encomienda> le = PersistenciaEncomienda.cargar();
       le.add(encomienda);
       PersistenciaEncomienda.guardar(le);
+      
+      this.limpiarCampos();
    }//GEN-LAST:event_btn_agregarActionPerformed
 
+   public void limpiarCampos() {
+      tf_nombre_remitente.setText("");
+      tf_celular_remitente.setText("");
+      tf_ci_remitente.setText("");
+      
+      tf_nombre_remitente.setText("");
+      tf_celular_remitente.setText("");
+      tf_ci_remitente.setText("");
+
+      tf_codigo.setText("");
+      tf_descripcion.setText("");
+      tf_destino.setText("");
+      tf_peso.setText("");
+      tf_estado.setText("");
+      tf_fecha.setText("");
+   }
+   
    private void menu_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_inicioActionPerformed
       Inicio inicio = new Inicio();
       inicio.setVisible(true);
       inicio.setLocationRelativeTo(null);
-      this.setVisible(false);
-      this.dispose();
    }//GEN-LAST:event_menu_inicioActionPerformed
 
    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -584,6 +611,22 @@ public class Inicio extends javax.swing.JFrame {
       this.setVisible(false);
       this.dispose();
    }//GEN-LAST:event_menu_entregasActionPerformed
+
+   private void menu_despcharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_despcharActionPerformed
+      Despachar despachar = new Despachar();
+      despachar.setVisible(true);
+      despachar.setLocationRelativeTo(null);
+      this.setVisible(false);
+      this.dispose();
+   }//GEN-LAST:event_menu_despcharActionPerformed
+
+   private void menu_pendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_pendientesActionPerformed
+      Pendiente pen = new Pendiente();
+      pen.setVisible(true);
+      pen.setLocationRelativeTo(null);
+      this.setVisible(false);
+      this.dispose();
+   }//GEN-LAST:event_menu_pendientesActionPerformed
 
    /**
     * @param args the command line arguments
@@ -637,10 +680,12 @@ public class Inicio extends javax.swing.JFrame {
    private javax.swing.JPanel jPanel3;
    private javax.swing.JPanel jPanel4;
    private javax.swing.JPanel jPanel5;
+   private javax.swing.JMenuItem menu_despchar;
    private javax.swing.JMenu menu_destinos;
    private javax.swing.JMenu menu_destinos1;
    private javax.swing.JMenuItem menu_entregas;
    private javax.swing.JMenuItem menu_inicio;
+   private javax.swing.JMenuItem menu_pendientes;
    private javax.swing.JMenuItem menu_ver_destinos;
    private javax.swing.JMenu mn_buscar_cliente;
    private javax.swing.JMenu mn_inicio;

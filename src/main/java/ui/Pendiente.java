@@ -4,20 +4,27 @@
  */
 package ui;
 
+import estructuras.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelos.*;
+import persistencia.PersistenciaColaEncomienda;
+
 /**
  *
  * @author alboncho
  */
-public class Destinos extends javax.swing.JFrame {
+public class Pendiente extends javax.swing.JFrame {
    
-   private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Destinos.class.getName());
+   private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Pendiente.class.getName());
 
    /**
-    * Creates new form Destinos
+    * Creates new form Pendiente
     */
-   public Destinos() {
+   public Pendiente() {
       initComponents();
-      jMenuBar1.setOpaque(true);
+      
+      mostrarTabla();
    }
 
    /**
@@ -30,15 +37,25 @@ public class Destinos extends javax.swing.JFrame {
    private void initComponents() {
 
       jPanel1 = new javax.swing.JPanel();
+      jScrollPane1 = new javax.swing.JScrollPane();
+      tabla_pendientes = new javax.swing.JTable();
+      jLabel1 = new javax.swing.JLabel();
+      jPanel2 = new javax.swing.JPanel();
+      btn_ver = new javax.swing.JButton();
+      tf_codigo = new javax.swing.JTextField();
+      jScrollPane2 = new javax.swing.JScrollPane();
+      ta_mas_info = new javax.swing.JTextArea();
+      jLabel2 = new javax.swing.JLabel();
+      jLabel3 = new javax.swing.JLabel();
       jMenuBar1 = new javax.swing.JMenuBar();
       mn_inicio = new javax.swing.JMenu();
       menu_inicio = new javax.swing.JMenuItem();
       mn_buscar_cliente = new javax.swing.JMenu();
       jMenuItem3 = new javax.swing.JMenuItem();
-      jMenuItem2 = new javax.swing.JMenuItem();
+      menu_pendientes = new javax.swing.JMenuItem();
       mn_ver_buses = new javax.swing.JMenu();
       jMenuItem1 = new javax.swing.JMenuItem();
-      menu_despachar = new javax.swing.JMenuItem();
+      menu_despchar = new javax.swing.JMenuItem();
       menu_destinos = new javax.swing.JMenu();
       menu_ver_destinos = new javax.swing.JMenuItem();
       menu_destinos1 = new javax.swing.JMenu();
@@ -47,15 +64,98 @@ public class Destinos extends javax.swing.JFrame {
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+      tabla_pendientes.setModel(new javax.swing.table.DefaultTableModel(
+         new Object [][] {
+            {null, null, null},
+            {null, null, null},
+            {null, null, null},
+            {null, null, null}
+         },
+         new String [] {
+            "Codigo", "Estado", "Destino"
+         }
+      ));
+      jScrollPane1.setViewportView(tabla_pendientes);
+
+      jLabel1.setFont(new java.awt.Font("Cantarell", 1, 24)); // NOI18N
+      jLabel1.setText("Encomiendas pendientes");
+
+      jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+
+      btn_ver.setBackground(new java.awt.Color(255, 153, 0));
+      btn_ver.setForeground(new java.awt.Color(51, 51, 51));
+      btn_ver.setText("Ver");
+      btn_ver.addActionListener(this::btn_verActionPerformed);
+
+      ta_mas_info.setColumns(20);
+      ta_mas_info.setRows(5);
+      jScrollPane2.setViewportView(ta_mas_info);
+
+      jLabel2.setFont(new java.awt.Font("Cantarell", 1, 12)); // NOI18N
+      jLabel2.setText("Codigo:");
+
+      jLabel3.setFont(new java.awt.Font("Cantarell", 1, 14)); // NOI18N
+      jLabel3.setForeground(new java.awt.Color(255, 51, 102));
+      jLabel3.setText("Mas informacion");
+
+      javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+      jPanel2.setLayout(jPanel2Layout);
+      jPanel2Layout.setHorizontalGroup(
+         jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(jPanel2Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGroup(jPanel2Layout.createSequentialGroup()
+                  .addComponent(jLabel2)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(tf_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(btn_ver))
+               .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(jLabel3))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+      );
+      jPanel2Layout.setVerticalGroup(
+         jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel3)
+            .addGap(18, 18, 18)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(btn_ver)
+               .addComponent(jLabel2)
+               .addComponent(tf_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(18, 18, 18)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+            .addContainerGap())
+      );
+
       javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
       jPanel1.setLayout(jPanel1Layout);
       jPanel1Layout.setHorizontalGroup(
          jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGap(0, 440, Short.MAX_VALUE)
+         .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(35, 35, 35)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addComponent(jLabel1)
+                  .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+               .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                  .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(25, 25, 25))))
       );
       jPanel1Layout.setVerticalGroup(
          jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGap(0, 261, Short.MAX_VALUE)
+         .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(22, 22, 22)
+            .addComponent(jLabel1)
+            .addGap(38, 38, 38)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+               .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+               .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addContainerGap(18, Short.MAX_VALUE))
       );
 
       jMenuBar1.setBackground(new java.awt.Color(110, 97, 179));
@@ -95,9 +195,9 @@ public class Destinos extends javax.swing.JFrame {
       jMenuItem3.addActionListener(this::jMenuItem3ActionPerformed);
       mn_buscar_cliente.add(jMenuItem3);
 
-      jMenuItem2.setText("Enc. pendientes");
-      jMenuItem2.addActionListener(this::jMenuItem2ActionPerformed);
-      mn_buscar_cliente.add(jMenuItem2);
+      menu_pendientes.setText("Enc. Pendientes");
+      menu_pendientes.addActionListener(this::menu_pendientesActionPerformed);
+      mn_buscar_cliente.add(menu_pendientes);
 
       jMenuBar1.add(mn_buscar_cliente);
 
@@ -117,8 +217,9 @@ public class Destinos extends javax.swing.JFrame {
       jMenuItem1.addActionListener(this::jMenuItem1ActionPerformed);
       mn_ver_buses.add(jMenuItem1);
 
-      menu_despachar.setText("Despachar");
-      mn_ver_buses.add(menu_despachar);
+      menu_despchar.setText("Despachar");
+      menu_despchar.addActionListener(this::menu_despcharActionPerformed);
+      mn_ver_buses.add(menu_despchar);
 
       jMenuBar1.add(mn_ver_buses);
 
@@ -159,7 +260,7 @@ public class Destinos extends javax.swing.JFrame {
       jMenuBar1.add(menu_destinos1);
 
       jMenu1.setBackground(new java.awt.Color(110, 97, 179));
-      jMenu1.setMaximumSize(new java.awt.Dimension(110, 32767));
+      jMenu1.setMaximumSize(new java.awt.Dimension(310, 32767));
       jMenuBar1.add(jMenu1);
 
       setJMenuBar(jMenuBar1);
@@ -182,8 +283,6 @@ public class Destinos extends javax.swing.JFrame {
       Inicio inicio = new Inicio();
       inicio.setVisible(true);
       inicio.setLocationRelativeTo(null);
-      this.setVisible(false);
-      this.dispose();
    }//GEN-LAST:event_menu_inicioActionPerformed
 
    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -202,6 +301,14 @@ public class Destinos extends javax.swing.JFrame {
       this.dispose();
    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+   private void menu_despcharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_despcharActionPerformed
+      Despachar despachar = new Despachar();
+      despachar.setVisible(true);
+      despachar.setLocationRelativeTo(null);
+      this.setVisible(false);
+      this.dispose();
+   }//GEN-LAST:event_menu_despcharActionPerformed
+
    private void menu_ver_destinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_ver_destinosActionPerformed
       Destinos destino = new Destinos();
       destino.setVisible(true);
@@ -218,14 +325,87 @@ public class Destinos extends javax.swing.JFrame {
       this.dispose();
    }//GEN-LAST:event_menu_entregasActionPerformed
 
-   private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+   private void btn_verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_verActionPerformed
+      
+      Encomienda encomienda = null;
+      MC_Encomienda mce = PersistenciaColaEncomienda.cargar();
+      
+      if (mce == null) {
+         return ;
+      }
+      
+      for (int i=0; i<mce.getN(); i++) {
+         ColaEncomienda aux = new ColaEncomienda();
+
+         while (!mce.getA()[i].esVacia()) {
+            Encomienda elem = mce.getA()[i].eli();
+            
+            if (elem.getCodigo().equals(tf_codigo.getText())) {
+               encomienda = elem;
+            }
+
+            aux.adi(elem);
+         }
+         mce.vaciar(i, aux);
+      }
+      
+      if (encomienda != null) {
+         String detalles = "";
+         
+         detalles = "Codigo: " + encomienda.getCodigo() + "\nDescripcion: " + encomienda.getDescripcion() + "\nPeso: " + encomienda.getPeso() + "\nDestino: " + encomienda.getDestino() + "\nEstado: " + encomienda.getEstado() + "\nFecha: " + encomienda.getFechaRegistro() + "\n\nRemitente: " + "\nNombre: " + encomienda.getRemitente().getNombre() + "\nC.I.: " + encomienda.getRemitente().getCi() + "\nCelular: " + encomienda.getRemitente().getCelular() + "\n\nDestinatario:" + "\nNombre: " + encomienda.getDestinatario().getNombre() + "\nC.I: " + encomienda.getDestinatario().getCi() + "\nCelular: " + encomienda.getDestinatario().getCelular();
+         
+         ta_mas_info.setText(detalles);
+      } else {
+         JOptionPane.showMessageDialog(null, "No existe encomienda con ese codigo");
+      }
+      
+      tf_codigo.setText("");
+   }//GEN-LAST:event_btn_verActionPerformed
+
+   private void menu_pendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_pendientesActionPerformed
       Pendiente pen = new Pendiente();
       pen.setVisible(true);
       pen.setLocationRelativeTo(null);
-      this.setVisible(false);
-      this.dispose();
-   }//GEN-LAST:event_jMenuItem2ActionPerformed
+   }//GEN-LAST:event_menu_pendientesActionPerformed
 
+   
+   public void mostrarTabla() {
+      MC_Encomienda mce = PersistenciaColaEncomienda.cargar();
+      
+      DefaultTableModel modelo = (DefaultTableModel) tabla_pendientes.getModel();
+      modelo.setRowCount(0);
+      
+      if (mce == null) {
+         System.out.println("Archivo vacio");
+         return;
+      }
+      
+      // RECUPERAR ENCOMIENDAS PENDIENTE
+      for (int i=0; i<mce.getN(); i++) {
+         ColaEncomienda aux = new ColaEncomienda();
+
+         while (!mce.getA()[i].esVacia()) {
+            Encomienda e = mce.getA()[i].eli();
+            
+            System.out.println(
+               "codigo=" + e.getCodigo() +
+               ", estado=" + e.getEstado() +
+               ", destino=" + e.getDestino()
+           );
+
+            modelo.addRow(new Object[] {
+               e.getCodigo(),
+               e.getEstado(),
+               e.getDestino()
+            });
+
+            aux.adi(e);
+         }
+
+         mce.vaciar(i, aux);
+      }
+   }
+   
    /**
     * @param args the command line arguments
     */
@@ -248,24 +428,34 @@ public class Destinos extends javax.swing.JFrame {
       //</editor-fold>
 
       /* Create and display the form */
-      java.awt.EventQueue.invokeLater(() -> new Destinos().setVisible(true));
+      java.awt.EventQueue.invokeLater(() -> new Pendiente().setVisible(true));
    }
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
+   private javax.swing.JButton btn_ver;
+   private javax.swing.JLabel jLabel1;
+   private javax.swing.JLabel jLabel2;
+   private javax.swing.JLabel jLabel3;
    private javax.swing.JMenu jMenu1;
    private javax.swing.JMenuBar jMenuBar1;
    private javax.swing.JMenuItem jMenuItem1;
-   private javax.swing.JMenuItem jMenuItem2;
    private javax.swing.JMenuItem jMenuItem3;
    private javax.swing.JPanel jPanel1;
-   private javax.swing.JMenuItem menu_despachar;
+   private javax.swing.JPanel jPanel2;
+   private javax.swing.JScrollPane jScrollPane1;
+   private javax.swing.JScrollPane jScrollPane2;
+   private javax.swing.JMenuItem menu_despchar;
    private javax.swing.JMenu menu_destinos;
    private javax.swing.JMenu menu_destinos1;
    private javax.swing.JMenuItem menu_entregas;
    private javax.swing.JMenuItem menu_inicio;
+   private javax.swing.JMenuItem menu_pendientes;
    private javax.swing.JMenuItem menu_ver_destinos;
    private javax.swing.JMenu mn_buscar_cliente;
    private javax.swing.JMenu mn_inicio;
    private javax.swing.JMenu mn_ver_buses;
+   private javax.swing.JTextArea ta_mas_info;
+   private javax.swing.JTable tabla_pendientes;
+   private javax.swing.JTextField tf_codigo;
    // End of variables declaration//GEN-END:variables
 }
