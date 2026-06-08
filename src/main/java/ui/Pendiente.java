@@ -60,6 +60,7 @@ public class Pendiente extends javax.swing.JFrame {
       menu_ver_destinos = new javax.swing.JMenuItem();
       menu_destinos1 = new javax.swing.JMenu();
       menu_entregas = new javax.swing.JMenuItem();
+      jMenuItem2 = new javax.swing.JMenuItem();
       jMenu1 = new javax.swing.JMenu();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -257,6 +258,10 @@ public class Pendiente extends javax.swing.JFrame {
       menu_entregas.addActionListener(this::menu_entregasActionPerformed);
       menu_destinos1.add(menu_entregas);
 
+      jMenuItem2.setText("Historial");
+      jMenuItem2.addActionListener(this::jMenuItem2ActionPerformed);
+      menu_destinos1.add(jMenuItem2);
+
       jMenuBar1.add(menu_destinos1);
 
       jMenu1.setBackground(new java.awt.Color(110, 97, 179));
@@ -368,6 +373,14 @@ public class Pendiente extends javax.swing.JFrame {
       pen.setLocationRelativeTo(null);
    }//GEN-LAST:event_menu_pendientesActionPerformed
 
+   private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+      Historial h = new Historial();
+      h.setVisible(true);
+      h.setLocationRelativeTo(null);
+      this.setVisible(false);
+      this.dispose();
+   }//GEN-LAST:event_jMenuItem2ActionPerformed
+
    
    public void mostrarTabla() {
       MC_Encomienda mce = PersistenciaColaEncomienda.cargar();
@@ -439,6 +452,7 @@ public class Pendiente extends javax.swing.JFrame {
    private javax.swing.JMenu jMenu1;
    private javax.swing.JMenuBar jMenuBar1;
    private javax.swing.JMenuItem jMenuItem1;
+   private javax.swing.JMenuItem jMenuItem2;
    private javax.swing.JMenuItem jMenuItem3;
    private javax.swing.JPanel jPanel1;
    private javax.swing.JPanel jPanel2;

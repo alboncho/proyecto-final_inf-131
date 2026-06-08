@@ -18,6 +18,7 @@ modelos/Cliente.class
 modelos/Entrega.class
 estructuras/NodoCliente.class
 estructuras/ColaEncomienda.class
+ui/Historial.class
 ui/Destinos.class
 ui/Pendiente.class
 modelos/Encomienda.class

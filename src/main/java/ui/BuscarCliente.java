@@ -65,6 +65,7 @@ public class BuscarCliente extends javax.swing.JFrame {
       menu_ver_destinos = new javax.swing.JMenuItem();
       menu_destinos1 = new javax.swing.JMenu();
       menu_entregas = new javax.swing.JMenuItem();
+      jMenuItem5 = new javax.swing.JMenuItem();
       jMenu1 = new javax.swing.JMenu();
 
       jMenuItem2.setText("jMenuItem2");
@@ -372,6 +373,10 @@ public class BuscarCliente extends javax.swing.JFrame {
       menu_entregas.addActionListener(this::menu_entregasActionPerformed);
       menu_destinos1.add(menu_entregas);
 
+      jMenuItem5.setText("Historial");
+      jMenuItem5.addActionListener(this::jMenuItem5ActionPerformed);
+      menu_destinos1.add(jMenuItem5);
+
       jMenuBar1.add(menu_destinos1);
 
       jMenu1.setBackground(new java.awt.Color(110, 97, 179));
@@ -481,6 +486,14 @@ public class BuscarCliente extends javax.swing.JFrame {
       this.dispose();
    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+   private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+      Historial h = new Historial();
+      h.setVisible(true);
+      h.setLocationRelativeTo(null);
+      this.setVisible(false);
+      this.dispose();
+   }//GEN-LAST:event_jMenuItem5ActionPerformed
+
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton btn_buscar_cliente;
@@ -492,6 +505,7 @@ public class BuscarCliente extends javax.swing.JFrame {
    private javax.swing.JMenuItem jMenuItem2;
    private javax.swing.JMenuItem jMenuItem3;
    private javax.swing.JMenuItem jMenuItem4;
+   private javax.swing.JMenuItem jMenuItem5;
    private javax.swing.JPanel jPanel1;
    private javax.swing.JPanel jPanel2;
    private javax.swing.JPanel jPanel3;

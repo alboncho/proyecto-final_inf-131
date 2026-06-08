@@ -12,30 +12,29 @@ import java.io.Serializable;
 public class Entrega implements Serializable {
    private static final long serialVersionUID = 1L;
    
-   private int codEntrega;
+   private String codEntrega;
    private String fechaEntrega;
    private String encargado;
    private Encomienda encomienda;
 
    public Entrega() {
-      this.codEntrega = 0;
+      this.codEntrega = "";
       this.fechaEntrega = "";
       this.encargado = "";
       this.encomienda = new Encomienda();
    }
 
-   public Entrega(int codEntrega, String fechaEntrega, String encargado, Encomienda encomienda) {
+   public Entrega(String codEntrega, String fechaEntrega, Encomienda encomienda) {
       this.codEntrega = codEntrega;
       this.fechaEntrega = fechaEntrega;
-      this.encargado = encargado;
       this.encomienda = encomienda;
    }
 
-   public int getCodEntrega() {
+   public String getCodEntrega() {
       return codEntrega;
    }
 
-   public void setCodEntrega(int codEntrega) {
+   public void setCodEntrega(String codEntrega) {
       this.codEntrega = codEntrega;
    }
 

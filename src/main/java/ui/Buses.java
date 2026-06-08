@@ -72,6 +72,7 @@ public class Buses extends javax.swing.JFrame {
       menu_ver_destinos = new javax.swing.JMenuItem();
       menu_destinos1 = new javax.swing.JMenu();
       menu_entregas = new javax.swing.JMenuItem();
+      jMenuItem4 = new javax.swing.JMenuItem();
       jMenu1 = new javax.swing.JMenu();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -328,6 +329,10 @@ public class Buses extends javax.swing.JFrame {
       menu_entregas.addActionListener(this::menu_entregasActionPerformed);
       menu_destinos1.add(menu_entregas);
 
+      jMenuItem4.setText("Historial");
+      jMenuItem4.addActionListener(this::jMenuItem4ActionPerformed);
+      menu_destinos1.add(jMenuItem4);
+
       jMenuBar1.add(menu_destinos1);
 
       jMenu1.setBackground(new java.awt.Color(110, 97, 179));
@@ -479,6 +484,14 @@ public class Buses extends javax.swing.JFrame {
       this.dispose();
    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+   private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+      Historial h = new Historial();
+      h.setVisible(true);
+      h.setLocationRelativeTo(null);
+      this.setVisible(false);
+      this.dispose();
+   }//GEN-LAST:event_jMenuItem4ActionPerformed
+
    /**
     * @param args the command line arguments
     */
@@ -520,6 +533,7 @@ public class Buses extends javax.swing.JFrame {
    private javax.swing.JMenuItem jMenuItem1;
    private javax.swing.JMenuItem jMenuItem2;
    private javax.swing.JMenuItem jMenuItem3;
+   private javax.swing.JMenuItem jMenuItem4;
    private javax.swing.JPanel jPanel1;
    private javax.swing.JPanel jPanel2;
    private javax.swing.JScrollPane jScrollPane1;
